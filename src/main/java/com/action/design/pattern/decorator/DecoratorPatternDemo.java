@@ -1,7 +1,7 @@
 package com.action.design.pattern.decorator;
 
 /**
- * 使用 RedShapeDecorator 来装饰 Shape 对象。
+ * 使用 RedShapeDecorator 来装饰 Image 对象。
  * Created by wuyunfeng on 2017/6/14.
  */
 public class DecoratorPatternDemo {

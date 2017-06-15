@@ -1,7 +1,7 @@
 package com.action.design.pattern.abstractFactory;
 
 /**
- * Color Shape 对象创建抽象类 来获取工厂
+ * Color Image 对象创建抽象类 来获取工厂
  * Created by wuyunfeng on 2017/6/13.
  */
 public abstract class AbstractFactory {
