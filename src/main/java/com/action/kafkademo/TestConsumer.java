@@ -10,7 +10,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
-public class HelloWorldConsumer2 {
+public class TestConsumer {
 
     public static void main(String[] args) {
         Properties props = new Properties();
@@ -28,13 +28,7 @@ public class HelloWorldConsumer2 {
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(100);
             for (ConsumerRecord<String, String> record : records) {
-                System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(), record.value());
                 System.out.println(record.toString());
-//                try {
-//                    Thread.sleep(100);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
             }
         }
     }

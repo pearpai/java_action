@@ -1,6 +1,5 @@
 package com.action.kafkademo;
 
-import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
@@ -8,7 +7,7 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
-public class HelloWorldProducer2 {
+public class TestProducer {
     public static void main(String[] args) {
         long events = Long.parseLong(args[0]);
         Random rnd = new Random();
@@ -22,22 +21,22 @@ public class HelloWorldProducer2 {
         props.put("buffer.memory", 33554432);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        //配置partitionner选择策略，可选配置
-        props.put("partitioner.class", "com.action.kafkademo.SimplePartitioner2");
+        // 进行partition 控制
+        props.put("partitioner.class", "com.action.kafkademo.SimplePartitioner");
 
         Producer<String, String> producer = new KafkaProducer<>(props);
 
         for (long nEvents = 0; nEvents < events; nEvents++) {
-            long runtime = new Date().getTime();
-            String ip = "192.168.2." + rnd.nextInt(255);
-            String msg = runtime + ",www.example.com," + ip;
-            ProducerRecord<String, String> data = new ProducerRecord<>("my-visit", ip, msg);
+            String key = String.valueOf(rnd.nextInt(1000));
+            String value = "content ..." ;
+            String topic = "my-visit";
+            ProducerRecord<String, String> data = new ProducerRecord<>(topic, key, value);
             producer.send(data,
                     (metadata, e) -> {
                         if (e != null) {
                             e.printStackTrace();
                         } else {
-                            System.out.println("The offset of the record we just sent is: " + metadata.toString());
+                            System.out.println(metadata.toString());
                         }
                     });
         }
