@@ -10,6 +10,11 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
+
+/**
+ * 消费者
+ * Created by wuyunfeng on 2017/6/20.
+ */
 public class TestConsumer {
 
     public static void main(String[] args) {

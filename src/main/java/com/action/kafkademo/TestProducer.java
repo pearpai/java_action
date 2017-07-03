@@ -7,6 +7,11 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
+
+/**
+ * partitioner 生产者
+ * Created by wuyunfeng on 2017/6/20.
+ */
 public class TestProducer {
     public static void main(String[] args) {
         long events = Long.parseLong(args[0]);
