@@ -16,6 +16,9 @@ public class MyThread extends Thread {
             System.out.println("在沉睡中被停止！进入catch！" + this.isInterrupted());
             e.printStackTrace();
         }
+
+
+
     }
 
 
