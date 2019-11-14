@@ -1,4 +1,4 @@
-package com.action.algorithm.wzsjjg.rmdjj.binary.tree.c12;
+package com.action.algorithm.wzsjjg.rmdjj.setandmap.setbasicsandbstset;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -11,7 +11,7 @@ import java.util.Stack;
  * @date 13. 11月 2019 08:52
  */
 @SuppressWarnings({"DuplicatedCode", "Duplicates"})
-public class BST12<E extends Comparable<E>> {
+public class BST<E extends Comparable<E>> {
 
 
     private class Node {
@@ -29,7 +29,7 @@ public class BST12<E extends Comparable<E>> {
     private Node root;
     private int size;
 
-    public BST12() {
+    public BST() {
         root = null;
         size = 0;
     }
@@ -82,7 +82,7 @@ public class BST12<E extends Comparable<E>> {
      * @param e
      * @return
      */
-    private boolean contains(E e) {
+    public boolean contains(E e) {
 
         return contains(root, e);
     }
