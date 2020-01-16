@@ -39,7 +39,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 //        }
 
 //        String str = ((ByteBuf) msg).toString(Charset.defaultCharset());
-        System.out.println(msg);
+        System.out.println("channelRead------》" + msg);
     }
 
 
