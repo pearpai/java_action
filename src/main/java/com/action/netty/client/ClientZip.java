@@ -83,6 +83,17 @@ public class ClientZip {
         Thread.sleep(1000);
 
         ZipTest.sendData(cf);
+//        ZipTest.sendDataStr(cf, "2020-01-23 00:00:13.456",
+//                "034401012104C4800B00F604CCC00B00F504D4C00B00F6050001165E000600005A17000034DC04D90121012201FF03FF0307D00039004402AC003B004C007C07D007D00000E8");
+//        ZipTest.sendDataStr(cf, "2020-01-10 00:00:13.456", "F20103");
+//        ZipTest.sendDataStr(cf, "2020-01-10 00:00:13.456", "F30403010001");
+//        ZipTest.sendDataStr(cf, "2020-01-10 00:00:13.456", "F30403020002");
+
+
+//        ZipTest.sendDataStr(cf, "2020-01-10 00:00:13.456", "F403011030");
+//        ZipTest.sendDataStr(cf, "2020-01-10 00:00:13.456", "F504011F0001");
+//        ZipTest.sendDataStr(cf, "2020-01-10 00:00:13.456",
+//                "F61B00010008323031392D31322D31392D31353A35303A31342E353831");
 
     }
 

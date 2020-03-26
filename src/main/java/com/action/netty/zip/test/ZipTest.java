@@ -69,6 +69,14 @@ public class ZipTest {
     }
 
 
+    public static void sendDataStr(ChannelFuture cf,String time, String str){
+
+        InventoryDataDTO dto = new InventoryDataDTO(time, str);
+        cf.channel().writeAndFlush(JSON.toJSONString(dto));
+
+    }
+
+
     public static void main(String[] args) {
 //        readFileByLine();
 
