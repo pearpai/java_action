@@ -43,52 +43,52 @@ package com.action.effectivejava3.item8;
 //}
 
 
-import sun.misc.Cleaner;
-
-public class Room implements AutoCloseable {
-    private static Cleaner cleaner;
-
-    // Resource that requires cleaning. Must not refer to Room!
-    private static class State implements Runnable {
-        int numJunkPiles; // Number of junk piles in this room
-
-        State(int numJunkPiles) {
-            this.numJunkPiles = numJunkPiles;
-        }
-
-        // Invoked by close method or cleaner
-        @Override
-        public void run() {
-            System.out.println("Cleaning room");
-            numJunkPiles = 0;
-        }
-    }
-
-    private Room() {
-
-    }
-
-    // The state of this room, shared with our cleanable
-    private State state;
-
-    public Room(int numJunkPiles) {
-        state = new State(numJunkPiles);
-        cleaner = Cleaner.create(this, state);
-    }
-
-    @Override
-    public void close() {
-        cleaner.clean();
-    }
-
-    public static void main(String[] args) {
-//        try (Room myRoom = new Room(7)) {
-//            System.out.println("Goodbye");
-//        } catch (Exception e) {
-//            e.printStackTrace();
+//import sun.misc.Cleaner;
+//
+//public class Room implements AutoCloseable {
+//    private static Cleaner cleaner;
+//
+//    // Resource that requires cleaning. Must not refer to Room!
+//    private static class State implements Runnable {
+//        int numJunkPiles; // Number of junk piles in this room
+//
+//        State(int numJunkPiles) {
+//            this.numJunkPiles = numJunkPiles;
 //        }
-
-        new Room(99);
-        System.out.println("Peace out");
-    }
-}
+//
+//        // Invoked by close method or cleaner
+//        @Override
+//        public void run() {
+//            System.out.println("Cleaning room");
+//            numJunkPiles = 0;
+//        }
+//    }
+//
+//    private Room() {
+//
+//    }
+//
+//    // The state of this room, shared with our cleanable
+//    private State state;
+//
+//    public Room(int numJunkPiles) {
+//        state = new State(numJunkPiles);
+//        cleaner = Cleaner.create(this, state);
+//    }
+//
+//    @Override
+//    public void close() {
+//        cleaner.clean();
+//    }
+//
+//    public static void main(String[] args) {
+////        try (Room myRoom = new Room(7)) {
+////            System.out.println("Goodbye");
+////        } catch (Exception e) {
+////            e.printStackTrace();
+////        }
+//
+//        new Room(99);
+//        System.out.println("Peace out");
+//    }
+//}
