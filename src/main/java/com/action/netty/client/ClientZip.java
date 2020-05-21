@@ -52,7 +52,7 @@ public class ClientZip {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
                         // marshalling 序列化对象的解码
-//                  socketChannel.pipeline().addLast(MarshallingCodefactory.buildDecoder());
+//                  socketChannel.pipeline().add 3  Last(MarshallingCodefactory.buildDecoder());
                         // marshalling 序列化对象的编码
 //                  socketChannel.pipeline().addLast(MarshallingCodefactory.buildEncoder());
 
