@@ -7,6 +7,7 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Summary:
@@ -28,8 +29,10 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        // 将为决消息冲刷到远程节点，并且关闭Channel
+        System.out.println("ctx--->" + ctx + "   " + this);
+        // 将未决消息冲刷到远程节点，并且关闭Channel（就是channel要关闭了，但是还是有数据没有发出去，先将数据发出去再进行关闭）
         ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+//        ctx.writeAndFlush(Unpooled.EMPTY_BUFFER);
     }
 
     @Override

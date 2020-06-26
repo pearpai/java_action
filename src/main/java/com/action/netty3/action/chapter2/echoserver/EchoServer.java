@@ -43,7 +43,8 @@ public class EchoServer {
                             // EchoServerHandler 被注释为@Shareable，所有我们可以总数使用同样的实例
                             // 这里对于所有的客户连接来说，都会使用同一个EchoServerHandler，因为其其被标注为@Shareable
                             // 这将在后面讲到
-                            ch.pipeline().addLast(serverHandler);
+//                            ch.pipeline().addLast("test", serverHandler);
+                            ch.pipeline().addLast("test",  new EchoServerHandler());
                         }
                     });
             // 6、异步地绑定服务器：调用sync()方法阻塞等待直到绑定完成

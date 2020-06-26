@@ -2,6 +2,7 @@ package com.action.netty3.action.chapter2.echoclient;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -46,6 +47,18 @@ public class EchoClient {
                     });
             // 连接到远程节点
             ChannelFuture f = b.connect().sync();
+
+            f.addListener(new ChannelFutureListener() {
+                @Override
+                public void operationComplete(ChannelFuture future) throws Exception {
+                    if (future.isSuccess()) {
+                        System.out.println("connection established");
+                    } else {
+                        System.out.println("Connection attempt failed");
+                    }
+                }
+            });
+
             // 阻塞。知道Channel关闭
             f.channel().closeFuture().sync();
         } finally {
@@ -55,7 +68,7 @@ public class EchoClient {
     }
 
     public static void main(String[] args) throws Exception {
-        new EchoClient("192.168.53.7", 10086).start();
+        new EchoClient("127.0.0.1", 10086).start();
     }
 
 

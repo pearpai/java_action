@@ -7,6 +7,9 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Summary:
  *
@@ -16,6 +19,8 @@ import io.netty.util.CharsetUtil;
  */
 @ChannelHandler.Sharable
 public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
+
+
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
