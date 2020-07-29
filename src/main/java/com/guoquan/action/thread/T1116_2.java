@@ -31,50 +31,48 @@ import java.util.function.IntConsumer;
  * 输入：n = 5
  * 输出："0102030405"
  */
-public class T1116 {
+public class T1116_2 {
 
 
     private int n;
-    private Semaphore zero = new Semaphore(1);
-    private Semaphore even = new Semaphore(0);
-    private Semaphore odd = new Semaphore(0);
 
-    public T1116(int n) {
+    volatile int flag = 0;
+
+
+    public T1116_2(int n) {
         this.n = n;
     }
 
     // printNumber.accept(x) outputs "x", where x is an integer.
     public void zero(IntConsumer printNumber) throws InterruptedException {
-
-        for (int i = 1; i <= n; i++) {
-            zero.acquire();
+        for (int i = 0; i < n; i++) {
+            while (flag > 0) {
+            }
             printNumber.accept(0);
             if (i % 2 == 1) {
-                odd.release();
+                flag = 2;
             } else {
-                even.release();
+                flag = 1;
             }
         }
+
 
     }
 
     public void even(IntConsumer printNumber) throws InterruptedException {
-
-
-        for (int i = 2; i <= n; i += 2) {
-            even.acquire();
+        for (int i = 2; i <= n; i+=2) {
+            while (flag != 2){}
             printNumber.accept(i);
-            zero.release();
+            flag = 0;
         }
-
 
     }
 
     public void odd(IntConsumer printNumber) throws InterruptedException {
-        for (int i = 1; i <= n; i += 2) {
-            odd.acquire();
+        for (int i = 1; i <= n; i+=2) {
+            while (flag != 1){}
             printNumber.accept(i);
-            zero.release();
+            flag = 0;
         }
     }
 
@@ -82,9 +80,9 @@ public class T1116 {
     public static void main(String[] args) {
 //        start(e -> System.out.print("Release year: " + e), 2013);
 
-        T1116 t1116 = new T1116(20);
+        T1116_2 t1116 = new T1116_2(2);
 
-        new Thread(()->{
+        new Thread(() -> {
             try {
                 t1116.zero(System.out::print);
             } catch (InterruptedException e) {
@@ -92,7 +90,7 @@ public class T1116 {
             }
         }).start();
 
-        new Thread(()->{
+        new Thread(() -> {
             try {
                 t1116.even(System.out::print);
             } catch (InterruptedException e) {
@@ -101,22 +99,13 @@ public class T1116 {
         }).start();
 
 
-        new Thread(()->{
+        new Thread(() -> {
             try {
                 t1116.odd(System.out::print);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }).start();
-
-
-
-
-
-
-
-
-
 
 
     }
